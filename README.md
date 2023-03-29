@@ -1,28 +1,15 @@
-# archscript (UEFI Version)
-## My own arch install script with Btrfs and snapper Setup
+# VoidBtrfs script (UEFI Version)
+## My own Void install script with Btrfs and snapper Setup
+## Based on My script for Arch Linux
 
 ### -----------Options Included-----------
 
 
 - Choice of Desktop environements/Tiling Manager
 
-
 - Choice of User Login Shell (bash, fish, zsh)
 
-
-- Choice for Multilib Repo
-
-
-- Choice for BlackArch Repo
-
-
-- Choice for Chaoctic-aur repo
-
-- Choice of Aur helper/Pacman Frontend (yay, paru, octopi + yay, octopi + paru)
-
-
 - Choice for Including /home or not inside of the main subvolume for snapshot
-
 
 - Choice For formating /home to Ext4 or Btrfs Or to Keep it As is If on a different partition
 
@@ -46,22 +33,19 @@ Partition needs to be done before launching the script
 
 - Post-Install : 
 
-Deleting the directory /root/archscript if not needed
+Deleting the directory /root/voidbtrfs if not needed
 (Not automated so logs can be check if needed)
 
 
 ### ------------Install Instruction------------
 
-1: Boot on Arch Iso And partition your drive(s)
+1: Boot on Void Iso And partition your drive(s)
 
 
-2: Ensure keyring is updated and Get git on the iso : pacman -Sy archlinux-keyring --needed && pacman -S git
+2: Download the script : git clone https://github.com/K-arch27/voidbtrfs.git
 
 
-3: Download the script : git clone https://github.com/K-arch27/archscript.git
-
-
-4: Enter the directory of the script : cd archscript
+4: Enter the directory of the script : cd voidbtrfs
 
 
 5: Give the script permission to be executed : chmod +x ./start.sh
