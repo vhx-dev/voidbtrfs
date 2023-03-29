@@ -4,14 +4,16 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 clear
 echo -ne "
 -------------------------------------------------------------------------
-                 █████╗ ██████╗  ██████╗██╗  ██╗
-                ██╔══██╗██╔══██╗██╔════╝██║  ██║
-                ███████║██████╔╝██║     ███████║
-                ██╔══██║██╔══██╗██║     ██╔══██║
-                ██║  ██║██║  ██║╚██████╗██║  ██║
-                ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+
+                    ██╗   ██╗ ██████╗ ██╗██████╗ 
+                    ██║   ██║██╔═══██╗██║██╔══██╗
+                    ██║   ██║██║   ██║██║██║  ██║
+                    ╚██╗ ██╔╝██║   ██║██║██║  ██║
+                     ╚████╔╝ ╚██████╔╝██║██████╔╝
+                      ╚═══╝   ╚═════╝ ╚═╝╚═════╝ 
+                             
 -------------------------------------------------------------------------
-        Automated Arch Linux Installer With Btrfs Snapshot
+        Automated Void Linux Installer With Btrfs Snapshot
 -------------------------------------------------------------------------
 
 "
@@ -21,26 +23,29 @@ echo -ne "
     chmod +x ./4chroot.sh
     chmod +x ./5final.sh
     cp -R ${SCRIPT_DIR} /
-    source /archscript/config.sh
-    ( bash /archscript/1setup.sh )|& tee /archscript/setup.log
-    ( bash /archscript/2partition.sh )|& tee /archscript/partition.log
-    ( bash /archscript/3strap.sh )|& tee /archscript/strap.log
-    ( arch-chroot /mnt /root/archscript/4chroot.sh )|& tee /mnt/root/archscript/chroot.log
-    ( arch-chroot /mnt /root/archscript/5final.sh )|& tee /mnt/root/archscript/final.log
+    source /voidbtrfst/config.sh
+    ( bash /voidbtrfs/1setup.sh )|& tee /voidbtrfs/setup.log
+    ( bash /voidbtrfs/2partition.sh )|& tee /voidbtrfs/partition.log
+    ( bash /voidbtrfs/3strap.sh )|& tee /voidbtrfs/strap.log
+    ( arch-chroot /mnt /root/voidbtrfs/4chroot.sh )|& tee /mnt/root/voidbtrfs/chroot.log
+    ( arch-chroot /mnt /root/voidbtrfs/5final.sh )|& tee /mnt/root/voidbtrfs/final.log
    
 echo -ne "
 -------------------------------------------------------------------------
-                 █████╗ ██████╗  ██████╗██╗  ██╗
-                ██╔══██╗██╔══██╗██╔════╝██║  ██║
-                ███████║██████╔╝██║     ███████║
-                ██╔══██║██╔══██╗██║     ██╔══██║
-                ██║  ██║██║  ██║╚██████╗██║  ██║
-                ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+
+                    ██╗   ██╗ ██████╗ ██╗██████╗ 
+                    ██║   ██║██╔═══██╗██║██╔══██╗
+                    ██║   ██║██║   ██║██║██║  ██║
+                    ╚██╗ ██╔╝██║   ██║██║██║  ██║
+                     ╚████╔╝ ╚██████╔╝██║██████╔╝
+                      ╚═══╝   ╚═════╝ ╚═╝╚═════╝ 
+                             
 -------------------------------------------------------------------------
-        Automated Arch Linux Installer With Btrfs Snapshot
+        Automated Void Linux Installer With Btrfs Snapshot
 -------------------------------------------------------------------------
+
             Done - Please Eject Install Media and Reboot
-      Also note that this script copied itself in /root/archscript/
+      Also note that this script copied itself in /root/voidbtrfs/
              with the config you choosed and the logs
 
 "
