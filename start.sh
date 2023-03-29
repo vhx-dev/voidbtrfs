@@ -27,8 +27,8 @@ echo -ne "
     ( bash /voidbtrfs/1setup.sh )|& tee /voidbtrfs/setup.log
     ( bash /voidbtrfs/2partition.sh )|& tee /voidbtrfs/partition.log
     ( bash /voidbtrfs/3strap.sh )|& tee /voidbtrfs/strap.log
-    ( arch-chroot /mnt /root/voidbtrfs/4chroot.sh )|& tee /mnt/root/voidbtrfs/chroot.log
-    ( arch-chroot /mnt /root/voidbtrfs/5final.sh )|& tee /mnt/root/voidbtrfs/final.log
+    ( xchroot /mnt /root/voidbtrfs/4chroot.sh )|& tee /mnt/root/voidbtrfs/chroot.log
+    ( xchroot /mnt /root/voidbtrfs/5final.sh )|& tee /mnt/root/voidbtrfs/final.log
    
 echo -ne "
 -------------------------------------------------------------------------
