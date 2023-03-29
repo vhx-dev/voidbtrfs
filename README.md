@@ -1,4 +1,4 @@
-# VoidBtrfs script (UEFI Version)
+# VoidBtrfs script (UEFI Version) ( In construction )
 ## My own Void install script with Btrfs and snapper Setup
 ## Based on My script for Arch Linux
 
