@@ -55,4 +55,3 @@ sed -i 's/rootflags=subvol=${rootsubvol}//' /etc/grub.d/20_linux_xen
 sed -i 's|,subvolid=258,subvol=/@/.snapshots/1/snapshot| |' /etc/fstab
 
 
-grub-mkconfig -o /boot/grub/grub.cfg
