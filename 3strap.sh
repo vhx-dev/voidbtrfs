@@ -20,15 +20,14 @@ echo -ne "
 mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
-XBPS_ARCH=x86_64 xbps-install -S -r /mnt -R "https://repo-default.voidlinux.org/current" base-system
+XBPS_ARCH=x86_64 xbps-install -S -r /mnt -R "https://repo-default.voidlinux.org/current" base-system btrfs-progs grub-x86_64-efi grub-btrfs grub-btrfs-runit NetworkManager bash-completion nano wget gcc
 
 
 clear
 
-# genfstab -U /mnt >> /mnt/etc/fstab
 
 
-cp -R ${SCRIPT_DIR} /mnt/root/archscript
+cp -R ${SCRIPT_DIR} /mnt/root/voidbtrfs
     chmod +x /mnt/root/archscript/4chroot.sh
     chmod +x /mnt/root/archscript/5final.sh
 
