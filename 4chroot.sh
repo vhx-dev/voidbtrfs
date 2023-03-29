@@ -23,6 +23,13 @@ echo -ne "
 groupadd libvirt
 
 
+useradd -m -G wheel,libvirt $USERNAME
+
+# use chpasswd to enter $USERNAME:$password
+echo "$USERNAME:$PASSWORD" | chpasswd
+echo "root:$ROOTPASSWORD" | chpasswd
+
+
 # use chpasswd to enter $USERNAME:$password
 echo "$USERNAME:$PASSWORD" | chpasswd
 echo "root:$ROOTPASSWORD" | chpasswd
