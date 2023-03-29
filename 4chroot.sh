@@ -7,13 +7,6 @@ logo
 
 
 
-echo -ne "
-
--------------------------------------------------------------------------
-                    Setup Language to EN and set Admin rights
--------------------------------------------------------------------------
-"
-
 # Add sudo rights
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
@@ -35,8 +28,6 @@ echo "$USERNAME:$PASSWORD" | chpasswd
 echo "root:$ROOTPASSWORD" | chpasswd
 
 
-
-mkinitcpio -P
 
 umount /.snapshots
 rm -r /.snapshots
