@@ -28,8 +28,8 @@ clear
 
 
 cp -R ${SCRIPT_DIR} /mnt/root/voidbtrfs
-    chmod +x /mnt/root/archscript/4chroot.sh
-    chmod +x /mnt/root/archscript/5final.sh
+    chmod +x /mnt/root/voidbtrfs/4chroot.sh
+    chmod +x /mnt/root/voidbtrfs/5final.sh
 
 
 
