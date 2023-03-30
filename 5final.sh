@@ -17,6 +17,8 @@ echo "LANG=${LANGLOCAL}" > /etc/locale.conf
 echo -e "hostonly=yes\nhostonly_cmdline=yes" >> /etc/dracut.conf.d/00-hostonly.conf
 echo "add_dracutmodules+=\" btrfs resume \"" >> /etc/dracut.conf.d/20-addmodules.conf
 echo "tmpdir=/tmp" >> /etc/dracut.conf.d/30-tmpfs.conf
+ln -s /etc/sv/dhcpcd /etc/runit/runsvdir/default/
+ln -s /etc/sv/wpa_supplicant/ /etc/runit/runsvdir/default/
 
 #Changing The timeline auto-snap
 sed -i 's|QGROUP=""|QGROUP="1/0"|' /etc/snapper/configs/root
