@@ -240,10 +240,12 @@ swappartition () {
         lsblk
         read -p "Please enter your SWAP partition (EX: /dev/sda2): " partition4
         set_option SWAPPART $partition4
+        set_option SWAPON yes
         mkswap $partition4
         uuid4=$(blkid -o value -s UUID $partition4)
         set_option SWAPUUID $uuid4;;
         n|N|no|NO|No)
+        set_option SWAPON no
         echo "No Swap Partition are gonna be used"
         read -p "Press any key to resume";;
         *) echo "Wrong option. Try again";swappartition;;
