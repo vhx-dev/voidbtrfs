@@ -85,7 +85,76 @@ sed -i 's/rootflags=subvol=${rootsubvol}//' /etc/grub.d/20_linux_xen
 sed -i 's|,subvolid=258,subvol=/@/.snapshots/1/snapshot| |' /etc/fstab
 
 
-cp /proc/mounts /etc/fstab
-sed -i '/devtmpfs/,$d' inputfilename
+# Populate Fstab Properly
+          #Alternative method but use path relative to /dev/
+              #cp /proc/mounts /etc/fstab
+              #sed -i '/devtmpfs/,$d' inputfilename
+              
+              
+sed -i '/tmpfs/d' /etc/fstab
+cat << EOF >> /etc/fstab
+
+# ESP
+UUID=${EFIUUID}      	/boot/efi 	vfat      	rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro	0 2
+
+# /
+UUID=${ROOTUUID}	/         	btrfs     	rw,relatime,compress=zstd:3,ssd,space_cache=v2 	0 0
+
+# Snapshot
+UUID=${ROOTUUID}	/.snapshots	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/.snapshots	0 0
+
+# grub
+UUID=${ROOTUUID}	/boot/grub	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/boot/grub	0 0
+
+# /root
+UUID=${ROOTUUID}	/root     	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/root	0 0
+
+# /tmp
+UUID=${ROOTUUID}	/tmp      	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/tmp	0 0
+
+# cache
+UUID=${ROOTUUID}	/var/cache	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/var/cache	0 0
+
+# logs
+UUID=${ROOTUUID}	/var/log  	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/var/log	0 0
+
+# spool
+UUID=${ROOTUUID}	/var/spool	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/var/spool	0 0
+
+# /var/tmp
+UUID=${ROOTUUID}	/var/tmp  	btrfs     	rw,noatime,compress=zstd:3,ssd,space_cache=v2,subvol=/@/var/tmp	0 0
+
+
+EOF
+
+
+HOMEFSTAB=no
+
+ if [ "$HOMEPART" = "no" ] && [ "$HOMESNAP" = "no" ]; then
+   
+    HOMEFSTAB="UUID=${ROOTUUID} /home btrfs     	noatime,compress=zstd,ssd,commit=120,subvol=@/home "
+
+   fi 
+   
+    
+   if [ "$HOMEPART" = "yes" ] && [ "$HOMESNAP" = "no" ]; then
+   
+    HOMEFSTAB="UUID=${HOMEUUID} /home btrfs     	rw,relatime,ssd,space_cache=v2,subvolid=5,subvol=/	0 0"
+
+   fi 
+	
+ if [ "$HOMEFSTAB" != "no" ] ; then
+ 
+ echo "$HOMEFSTAB" >> /etc/fstab
+ 
+ fi 
+
+if [ "$SWAPON" = "yes" ] ; then
+ 
+ SWAPFSTAB="UUID=${SWAPUUID} 	none      	swap      	defaults  	0 0"
+ echo "$SWAPFSTAB" >> /etc/fstab
+ 
+ fi 
+
 
 xbps-reconfigure -fa
