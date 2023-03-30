@@ -8,6 +8,29 @@ logo
 xbps-install --yes -Su
 xbps-install --yes snapper
 
+if [ "$LIBCHOICE" = "yes" ]; then 
+
+#Enable multilib repo
+xbps-install --yes void-repo-multilib
+
+fi
+
+if [ "$NONFREE" = "yes" ]; then 
+
+#Enable non-free repo
+xbps-install --yes void-repo-nonfree
+
+fi
+
+if [ "$NONFREELIB" = "yes" ]; then
+
+#Enable multilib non-free repo
+xbps-install --yes void-repo-multilib-nonfree 
+
+fi
+
+ 
+
 # Add sudo rights
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
 
