@@ -5,7 +5,8 @@ source $SCRIPT_DIR/config.sh
 clear
 logo
 
-
+xbps-install --yes -Su
+xbps-install --yes snapper
 
 # Add sudo rights
 sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
@@ -58,3 +59,5 @@ sed -i 's|,subvolid=258,subvol=/@/.snapshots/1/snapshot| |' /etc/fstab
 
 
 cp /proc/mounts /etc/fstab
+
+xbps-reconfigure -fa
