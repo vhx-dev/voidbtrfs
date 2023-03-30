@@ -19,6 +19,7 @@ echo "add_dracutmodules+=\" btrfs resume \"" >> /etc/dracut.conf.d/20-addmodules
 echo "tmpdir=/tmp" >> /etc/dracut.conf.d/30-tmpfs.conf
 ln -s /etc/sv/dhcpcd /etc/runit/runsvdir/default/
 ln -s /etc/sv/wpa_supplicant/ /etc/runit/runsvdir/default/
+#ln -s /etc/sv/NetworkManager /etc/runit/runsvdir/default/
 
 #Changing The timeline auto-snap
 sed -i 's|QGROUP=""|QGROUP="1/0"|' /etc/snapper/configs/root
