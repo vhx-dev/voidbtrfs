@@ -5,13 +5,10 @@
 ### -----------Options Included-----------
 
 
-- Choice of Desktop environements/Tiling Manager
-
-- Choice of User Login Shell (bash, fish, zsh)
-
 - Choice for Including /home or not inside of the main subvolume for snapshot
 
 - Choice For formating /home to Ext4 or Btrfs Or to Keep it As is If on a different partition
+(ext4 not working for now because of the Fstab generation i'm not done with this part)
 
 ### -----------Important Information-----------
 
