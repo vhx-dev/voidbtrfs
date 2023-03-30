@@ -30,11 +30,6 @@ echo "$USERNAME:$PASSWORD" | chpasswd
 echo "root:$ROOTPASSWORD" | chpasswd
 
 
-# use chpasswd to enter $USERNAME:$password
-echo "$USERNAME:$PASSWORD" | chpasswd
-echo "root:$ROOTPASSWORD" | chpasswd
-
-
 
 umount /.snapshots
 rm -r /.snapshots
