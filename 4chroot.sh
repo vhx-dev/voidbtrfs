@@ -5,6 +5,10 @@ source $SCRIPT_DIR/config.sh
 clear
 logo
 
+echo LANG=$LANGLOCAL > /etc/locale.conf
+sed -i "s/^#${LANGLOCAL}/${LANGLOCAL}/" /etc/default/libc-locales
+xbps-reconfigure -f glibc-locales
+
 xbps-install --yes -Su
 xbps-install --yes snapper
 
@@ -82,5 +86,6 @@ sed -i 's|,subvolid=258,subvol=/@/.snapshots/1/snapshot| |' /etc/fstab
 
 
 cp /proc/mounts /etc/fstab
+sed -i '/devtmpfs/,$d' inputfilename
 
 xbps-reconfigure -fa
