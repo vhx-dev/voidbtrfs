@@ -22,7 +22,9 @@ cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
 XBPS_ARCH=x86_64 xbps-install -S -r /mnt --yes -R "https://repo-default.voidlinux.org/current" base-system btrfs-progs grub-x86_64-efi grub-btrfs grub-btrfs-runit NetworkManager bash-completion nano wget gcc
 
-
+rm /mnt/etc/default/libc-locales
+cp /etc/default/libc-locales /mnt/etc/default/libc-locales
+sed -i "s/^en_US.UTF-8}/#en_US.UTF-8/" /etc/default/libc-locales
 clear
 
 
