@@ -16,6 +16,32 @@ source $SCRIPT_DIR/config.sh
 
 
 
+localeselect () {
+echo -ne "
+Please select your locale from this list"
+# These are default key maps as presented in official arch repo archinstall
+options=(en_CA.UTF-8 en_HK.UTF-8 en_US.UTF-8 fr_CA.UTF-8 fr_FR.UTF-8 zh_CN.UTF-8 zh_TW.UTF-8 hu.UTF-8 it_IT.UTF-8 ja_JP.UTF-8 ru_RU.UTF-8 es_ES.UTF-8 de_DE.UTF-8 ar_SA.UTF-8 af_ZA.UTF-8)
+
+select_option $? 4 "${options[@]}"
+langlocale=${options[$?]}
+
+echo -ne "Your locale: ${langlocale} \n"
+echo -ne "Is this correct?
+"
+options=("Yes" "No")
+select_option $? 1 "${options[@]}"
+
+case ${options[$?]} in
+    y|Y|yes|Yes|YES)
+    set_option LANGLOCAL $langlocale;;
+    n|N|no|NO|No)
+    clear
+    echo "Please choose again"
+    localeselect;;
+    *) echo "Wrong option. Try again";localeselect;;
+esac
+
+}
 
 
 keymap () {
@@ -44,6 +70,83 @@ esac
 
 }
 
+lib32repo () {
+echo -ne "
+Do you want the Multilib repo ?"
+options=(no yes)
+
+select_option $? 4 "${options[@]}"
+libchoice=${options[$?]}
+
+echo -ne "Your choice : ${libchoice} \n"
+echo -ne "Is this correct?
+"
+options=("Yes" "No")
+select_option $? 1 "${options[@]}"
+
+case ${options[$?]} in
+    y|Y|yes|Yes|YES)
+set_option LIBCHOICE $libchoice;;
+    n|N|no|NO|No)
+    clear
+    echo "Please choose again"
+    lib32repo;;
+    *) echo "Wrong option. Try again";blackarch;;
+esac
+
+}
+
+nonfree () {
+echo -ne "
+Do you want the nonfree repo ?"
+options=(no yes)
+
+select_option $? 4 "${options[@]}"
+nonfree=${options[$?]}
+
+echo -ne "Your choice : ${nonfree} \n"
+echo -ne "Is this correct?
+"
+options=("Yes" "No")
+select_option $? 1 "${options[@]}"
+
+case ${options[$?]} in
+    y|Y|yes|Yes|YES)
+    set_option NONFREE $nonfree;;
+    n|N|no|NO|No)
+    clear
+    echo "Please choose again"
+    nonfree;;
+    *) echo "Wrong option. Try again";blackarch;;
+esac
+
+}
+
+nonfree32 () {
+echo -ne "
+Do you want the non free multilib repo ?"
+options=(no yes)
+
+select_option $? 4 "${options[@]}"
+nonfreelib=${options[$?]}
+
+echo -ne "Your choice : ${nonfreelib} \n"
+echo -ne "Is this correct?
+"
+options=("Yes" "No")
+select_option $? 1 "${options[@]}"
+
+case ${options[$?]} in
+    y|Y|yes|Yes|YES)
+set_option NONFREELIB $nonfreelib;;
+    n|N|no|NO|No)
+    clear
+    echo "Please choose again"
+    nonfree32;;
+    *) echo "Wrong option. Try again";blackarch;;
+esac
+
+}
 
 userinfo () {
 read -p "Please enter your username: " username
