@@ -20,7 +20,9 @@ echo -ne "
 mkdir -p /mnt/var/db/xbps/keys
 cp /var/db/xbps/keys/* /mnt/var/db/xbps/keys/
 
-XBPS_ARCH=x86_64 xbps-install -S -r /mnt --yes -R "https://repo-default.voidlinux.org/current" base-system btrfs-progs grub-x86_64-efi grub-btrfs grub-btrfs-runit NetworkManager bash-completion nano wget gcc
+
+XBPS_ARCH=x86_64 xbps-install -S -r /mnt --yes -R "https://repo.jing.rocks/voidlinux/current/" base-minimal linux6.1 dracut dosfstools btrfs-progs zstd grub-x86_64-efi grub-btrfs grub-btrfs-runit snapper dhcpcd wpa_supplicant iproute2 iputils ncurses bash sudo nano
+
 
 rm /mnt/etc/default/libc-locales
 cp /etc/default/libc-locales /mnt/etc/default/libc-locales
